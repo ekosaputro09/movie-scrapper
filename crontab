@@ -1,1 +1,1 @@
-0 18 * * 5 bash /app/run_scrapper.sh > /proc/1/fd/1 2> /proc/1/fd/2
+0 11 * * * bash /app/run_scrapper.sh > /proc/1/fd/1 2> /proc/1/fd/2
