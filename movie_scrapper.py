@@ -63,7 +63,7 @@ def movie_scraping():
         response = requests.get(link)
         soup = bs(response.text, "html.parser")
 
-        text = "Movie "
+        text = "===========================\nMovie\n==========================="
 
         # get title
         title = soup.find("h1")
@@ -91,7 +91,7 @@ def movie_scraping():
         keterangan = trailer_sinopsis.find("p", class_="hlite")
         text = text + "\n\n" + keterangan.text + "\n"
 
-        text = text + "\n-----------------------------\n"
+        text = text + "\n---------------------------\n"
 
         messages.append(text)
 
