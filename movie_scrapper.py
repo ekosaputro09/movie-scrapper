@@ -63,7 +63,7 @@ def movie_scraping():
         response = requests.get(link)
         soup = bs(response.text, "html.parser")
 
-        text = "===========================\nMovie\n==========================="
+        text = "==========================\nMovie\n==========================\n"
 
         # get title
         title = soup.find("h1")
@@ -81,9 +81,12 @@ def movie_scraping():
             trailer = trailer_sinopsis.find("iframe", src=True)
             text = text + "\nTrailer : %s" % trailer['src']
         except TypeError:
-            trailer_sinopsis = soup.find_all("div", class_="col-sm-8")[1]
-            trailer = trailer_sinopsis.find("source", src=True)
-            text = text + "\nTrailer : %s" % trailer['src']
+            try:
+                trailer_sinopsis = soup.find_all("div", class_="col-sm-8")[1]
+                trailer = trailer_sinopsis.find("source", src=True)
+                text = text + "\nTrailer : %s" % trailer['src']
+            except TypeError:
+                text = text + "\nTrailer : NO TRAILER"
 
         sinopsis = trailer_sinopsis.find("p")
         text = text + "\nSinopsis : %s" % sinopsis.text
